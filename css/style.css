@@ -1,0 +1,515 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+main {
+  width: fit-content;
+  /* width: auto; */
+  height: 100vh;
+  /* overflow-x: hidden; */
+  /* border: 5px solid orange; */
+
+  background: rgba(255, 255, 255, 0.5) url("../img/background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* <header>, <section> 자식요소를 좌/우로 배치하기 위해 flex 설정 */
+  display: flex;
+  /* overflow: hidden; */
+}
+
+/* ============================================ */
+
+main header {
+  width: 10%;
+  /* height: 100%; */
+  height: 80vh;
+  padding: 10vh 5vw;
+  /* border: 10px inset purple; */
+
+  display: flex;
+  /* 자식요소를 `가로로` 중간에 배치 */
+  justify-content: center;
+  /* 자식요소를 `세로로` 상/하 끝단에 배치 */
+  align-content: space-between;
+  /* 만일 가로폭이 모자라면, 다음 자식요소를 세로로 줄바꿈 되도록 이동 */
+  flex-wrap: wrap;
+
+  pointer-events: none;
+  position: relative;
+
+  /* <section>, <aside> 요소보다 상위에 위치시키기 위해 설정 */
+  z-index: 3;
+}
+main header h1 {
+  /* block 요소안에 inline 요소를 배치하면, inline 요소에 불필요한 자간과 줄높이가 추가되는 오류가 있음. (***)
+    이를 해결하는 방법이 font-size: 0px; 임. (***) */
+
+  /* 자간(letter-spacing)과 줄높이(line-height) 초기화 => 효과: `가로로 중앙에` 아이콘 배치 */
+  font-size: 0px;
+  text-align: center;
+  color: #bbb;
+  font-family: "Pretendard-Regular";
+}
+main header h1 > i {
+  margin-bottom: 15px;
+
+  font-size: 5vw;
+
+  color: #158cff;
+}
+main header h1 > span {
+  font-size: 1.7vw;
+  font-weight: normal;
+  line-height: 1;
+}
+main header address {
+  color: #bbb;
+
+  font-size: 13px;
+  font-weight: normal;
+  font-family: "Pretendard-Regular";
+  line-height: 1.2;
+  margin-bottom: auto;
+}
+
+/* ============================================ */
+
+main nav {
+  /* border: 5px solid aqua; */
+
+  position: fixed;
+  top: 5vh;
+  right: 1vw;
+
+  /* <section>, <aside> 요소보다 상위에 위치시키기 위해 설정 */
+  z-index: 3;
+}
+main nav ul {
+  /* 자식요소를 가로로 배치하기 위해 flex 설정 */
+  display: flex;
+}
+main nav ul li {
+  font-size: 0px;
+}
+main nav ul li a {
+  margin-right: 30px;
+
+  font-size: 18px;
+  color: #bbb;
+}
+
+/* ============================================ */
+
+main section {
+  width: 20%;
+  height: 100%;
+  /* height: 100vh; */
+
+  display: flex;
+  /* flex-direction: row;  */
+  /* padding-top: 140px; */
+  margin-right: 20px;
+
+  /* border: 5px outset gold; */
+
+  z-index: 2;
+
+  position: relative;
+
+  flex: 1;
+}
+
+/* ============================================ */
+
+main section article {
+  padding: 70px 40px 100px;
+  max-width: 100%;
+
+  /* 모든 article 요소의 너비를 동일하게 설정 */
+  flex: 1;
+
+  position: relative;
+
+  cursor: pointer;
+  opacity: 0.6;
+
+  z-index: 2;
+
+  /* transition: */
+  /* 1. Apply to 1 property - property name | duration */
+  /*                        - property name | duration | delay */
+  /*                        - property name | duration | easing function */
+  /*                        - property name | duration | easing function | delay */
+  /* 2. Apply to 2 properties
+                              - property name1 | duration1, property name2 | duration2 */
+  /* 3. Apply to all changed properties
+                              - all | duration | easing function */
+
+  /* flex, opacity 속성에만 전환효과 적용 */
+  transition: flex 0.5s, opacity 0.5s;
+}
+main section article::before {
+  content: "";
+  display: block;
+
+  width: 100%;
+  height: 0%;
+
+  background-color: rgba(255, 255, 255, 0.2);
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  opacity: 0;
+  /* border: 1px dotted #999; */
+
+  transition: 0.2s;
+}
+main section article .inner {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+main section article .inner .txt {
+  width: 100%;
+
+  transition: 0.5s;
+}
+main section article .inner .txt h2 {
+  margin-bottom: 40px;
+  padding-top: 70px;
+  height: calc(2 * 1.2em);
+
+  font-size: 2vw;
+  font-weight: normal;
+  font-family: "Pretendard-Regular";
+  line-height: 1.2;
+
+  color: #fff;
+
+  transition: 0.5s;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+main section article .inner .txt h2 img {
+  width: 12vw;
+  filter: saturate(10%);
+}
+
+main section article .inner .txt h2::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  bottom: -30px;
+
+  width: 40px;
+  height: 3px;
+  margin-top: 20px;
+
+  background-color: #bbb;
+
+  transition: 0.5s;
+
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+main section article .inner .txt p {
+  color: #bbb;
+
+  font-size: 16px;
+  font-family: "Pretendard-Regular";
+  line-height: 1.4;
+}
+
+/* ============================================ */
+
+main section article .inner figure {
+  max-width: 15vw;
+  max-height: 15vh;
+
+  /* background-color: #777; */
+  /* box-shadow: 5px 5px 30px rgba(0, 0, 0, .3); */
+
+  transform-origin: left center;
+  /* overflow: hidden; */
+
+  /* filter: saturate(10%); */
+  transition: 0.5s;
+
+  position: relative;
+}
+main section article .inner figure video {
+  width: 100%;
+  height: 15vh;
+  /* display: none; */
+
+  object-fit: cover;
+  transform: scale(1.1);
+  filter: saturate(10%);
+}
+
+main section article .inner figure img {
+  position: relative;
+  justify-content: center;
+
+  max-width: 15vw;
+  max-height: 15vh;
+}
+
+/* ============================================ */
+
+main section article:hover {
+  flex: 1.5;
+
+  opacity: 1;
+  z-index: 2;
+}
+main section article:hover::before {
+  left: 0px;
+  opacity: 1;
+  height: 100%;
+
+  width: 100%;
+}
+main section article:hover .inner .txt {
+  width: 100%;
+}
+main section article:hover .inner .txt h2 {
+  padding-top: 0px;
+
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+main section article:hover .inner .txt h2 img {
+  filter: saturate(100%);
+}
+
+main section article:hover .inner .txt h2::after {
+  /* width: 120px; */
+  width: 90%;
+  background-color: #158cff;
+}
+main section article:hover .inner figure {
+  height: 20vh;
+
+  margin: auto;
+  max-width: 100%;
+  filter: saturate(100%);
+}
+
+main section article:hover .inner figure video {
+  height: 15vh;
+
+  filter: saturate(100%);
+  transform: translateY(-3vh);
+}
+
+/* ============================================ */
+
+main .asidewrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  opacity: 0;
+
+  z-index: 1;
+
+  transition: 1s;
+}
+
+main .asidewrap.on {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  opacity: 1;
+
+  z-index: 3;
+}
+
+main aside {
+  box-sizing: border-box;
+
+  width: 80%;
+  height: 80vh;
+  padding: 7vh 3vw 7vh 5vw;
+
+  position: absolute;
+  /* align-self: center; */
+  left: 10%;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background2.jpg");
+  /* background: rgba(68, 68, 68, 0.8); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  display: none;
+  /* scale: 0; */
+
+  z-index: 0;
+
+  display: flex;
+  /* justify-content: space-between; */
+  top: 50%;
+  transform: translateY(-50%);
+
+  transition: 1s;
+}
+
+main aside.on {
+  left: 10%;
+  opacity: 1;
+  /* scale: 1; */
+
+  z-index: 4;
+}
+
+main aside .txt {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 1vw;
+}
+
+main aside .txt h1 {
+  /* margin-bottom: 20px; */
+
+  font-size: 2vw;
+  font-weight: bold;
+  font-family: "Pretendard-Regular";
+  line-height: 1.2;
+
+  height: calc(1 * 1.2em);
+
+
+  color: #fff;
+}
+main aside .txt p {
+  /* margin-bottom: 60px; */
+
+  font-size: 0.7vw;
+  font-family: "Pretendard-Regular";
+  line-height: 1.3;
+
+  color: #777;
+}
+main aside span {
+  font-size: 2vw;
+
+  cursor: pointer;
+  color: #158cff;
+  position: relative;
+  right: 1vw;
+  top: -2vh;
+}
+main aside figure {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  /* height: 100%; */
+}
+main aside figure video {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  /* object-fit: cover; */
+}
+
+@media screen and (max-width: 900px) {
+  /* 아래의 속성변경이 반영되려면, 브라우저를 refresh 해야 함(수동으로) (***) */
+
+  main header{
+    max-height: 100vh;
+  }
+
+  main header address {
+    font-size: 8px;
+  }
+
+  main nav {
+    top: 2vh;
+  }
+
+  main section article {
+    padding: 10px;
+  }
+
+  main section article .inner .txt p {
+    max-width: 100px;
+
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  main section article .inner figure video {
+    display: none;
+  }
+
+  main aside.on {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+    max-height: 50vh;
+    max-width: 60vw;
+    left: 20%;
+  }
+
+  main aside.on .txt {
+    margin-bottom: 2vh;
+    text-align: center;
+  }
+
+  main aside.on .txt p{
+    color: #bbb;
+  }
+
+  main aside span {
+    font-size: 20px;
+    margin-top: 5vh;
+  }
+
+  main aside figure video {
+    width: 100%;
+  }
+
+}
+
+/* ============================================ */
